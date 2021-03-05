@@ -1,0 +1,32 @@
+﻿
+@model IEnumerable<Curso>
+
+@{
+    ViewData["Title"] = "Cursos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Listado de Cursos</h2>
+        </div>
+        <div class="col-sm-6">
+            <a class="btn btn-dark d-flex" asp-action="Crear" asp-controller="Cursos">Crear Curso</a>
+        </div>
+    </div>
+    <div class="row">
+        @if (Model.Count() == 0)
+        {
+            <div>
+                <h1 class="text-danger">No hay cursos disponibles</h1>
+            </div>
+        }
+        else
+        { 
+            <h1 class="text-success">Cursos disponibles</h1>
+        }
+    </div>
+</div>
