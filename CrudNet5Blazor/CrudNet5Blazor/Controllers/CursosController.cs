@@ -33,9 +33,43 @@ namespace CrudNet5Blazor.Controllers
             {
                 _context.Add(curso);
                 _context.SaveChanges();
+                return RedirectToAction("Index");
+
             }
 
             return View();
+        }
+        public IActionResult Editar(int? id)
+        {
+            var curso = _context.Cursos.Find(id);
+            if (curso == null)
+                return NotFound();
+            return View(curso);
+        }
+
+        [HttpPost]
+        public IActionResult Editar(Curso curso)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Cursos.Update(curso);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+
+            return View();
+        }
+
+        public IActionResult Borrar(int? id)
+        {
+            var curso = _context.Cursos.Find(id);
+            if (curso == null)
+                return NotFound();
+
+            _context.Cursos.Remove(curso);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }

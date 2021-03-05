@@ -17,7 +17,8 @@ namespace CrudNet5Blazor.Models
         public string Descripcion { get; set; }
         
         [Required(ErrorMessage = "El campo precio es un dato requerido.")]
-        [Range(0, (double)decimal.MaxValue, ErrorMessage = "Introduzca un precio valido")]
+        //[Range(0, (double)decimal.MaxValue, ErrorMessage = "Introduzca un precio valido")]
+        [RegularExpression(@"^\d+\,\d{0,2}$",ErrorMessage = "Formato incorrecto")]
         public decimal Precio { get; set; }
     }
 }
